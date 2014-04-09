@@ -4,7 +4,7 @@ set_property PACKAGE_PIN Y9 [get_ports {CLOCK_50}]
 set_property PACKAGE_PIN Y21 [get_ports {VGA_B[6]}]
 #NET VGA_B1        LOC = Y21  | IOSTANDARD=LVCMOS33;  # "VGA-B1"
 set_property PACKAGE_PIN Y20 [get_ports {VGA_B[7]}]
-NET VGA_B2        LOC = Y20  | IOSTANDARD=LVCMOS33;  # "VGA-B2"
+#NET VGA_B2        LOC = Y20  | IOSTANDARD=LVCMOS33;  # "VGA-B2"
 set_property PACKAGE_PIN AB20 [get_ports {VGA_B[8]}]
 #NET VGA_B3        LOC = AB20 | IOSTANDARD=LVCMOS33;  # "VGA-B3"
 set_property PACKAGE_PIN AB19 [get_ports {VGA_B[9]}]
@@ -28,4 +28,4 @@ set_property PACKAGE_PIN V19 [get_ports {VGA_R[8]}]
 set_property PACKAGE_PIN V18 [get_ports {VGA_R[9]}]
 #NET VGA_R4        LOC = V18  | IOSTANDARD=LVCMOS33;  # "VGA-R4"
 set_property PACKAGE_PIN Y19 [get_ports {VGA_VS}]
-NET VGA_VS        LOC = Y19  | IOSTANDARD=LVCMOS33;  # "VGA-VS"
+#NET VGA_VS        LOC = Y19  | IOSTANDARD=LVCMOS33;  # "VGA-VS"
