@@ -6,9 +6,9 @@ entity rom is
 
 	port
 	(
-		addr	: in natural range 0 to 255;
-		clk		: in std_logic;
-		q		: out std_logic_vector(7 downto 0)
+		address		: in natural range 0 to 32767;
+		clock		: IN STD_LOGIC ;
+		q		: OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
 	);
 	
 end entity;
@@ -17,13 +17,13 @@ architecture rtl of rom is
 
 	-- Build a 2-D array type for the RoM
 	subtype word_t is std_logic_vector(7 downto 0);
-	type memory_t is array(255 downto 0) of word_t;
+	type memory_t is array(32767 downto 0) of word_t;
 		
 	function init_rom
 		return memory_t is
 		variable tmp : memory_t := (others => (others => '0'));
 		begin
-			for addr_pos in 0 to 255 loop
+			for addr_pos in 0 to 32767 loop
 				-- Initialize each address with the address itself
 				tmp(addr_pos) := std_logic_vector(to_unsigned(addr_pos, 8));
 			end loop;
@@ -37,10 +37,10 @@ architecture rtl of rom is
 	
 begin
 	
-	process(clk)
+	process(clock)
 	begin
-		if(rising_edge(clk)) then
-			q <= rom(addr);
+		if(rising_edge(clock)) then
+			q <= rom(address);
 		end if;
 	end process;
 		

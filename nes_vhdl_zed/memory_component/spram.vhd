@@ -4,11 +4,11 @@ use ieee.std_logic_1164.all;
 entity spram is
 	port
 	(
-		data	: in std_logic_vector(7 downto 0);
-		addr	: in natural range 0 to 63;
-		we		: in std_logic := '1';
-		clk		: in std_logic;
-		q		: out std_logic_vector(7 downto 0)
+		address		: in natural range 0 to 255;
+		clock		: IN STD_LOGIC ;
+		data		: IN STD_LOGIC_VECTOR (7 DOWNTO 0);
+		wren		: IN STD_LOGIC ;
+		q		: OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
 	);
 	
 end entity;
@@ -17,25 +17,25 @@ architecture rtl of spram is
 
 	-- Build a 2-D array type for the RAM
 	subtype word_t is std_logic_vector(7 downto 0);
-	type memory_t is array(63 downto 0) of word_t;
+	type memory_t is array(255 downto 0) of word_t;
 	
 	-- Declare the RAM signal.
 	signal ram : memory_t;
 	
 	-- Register to hold the address
-	signal addr_reg : natural range 0 to 63;
+	signal addr_reg : natural range 0 to 255;
 
 begin
 
-	process(clk)
+	process(clock)
 	begin
-		if(rising_edge(clk)) then
-			if(we = '1') then
-				ram(addr) <= data;
+		if(rising_edge(clock)) then
+			if(wren = '1') then
+				ram(address) <= data;
 			end if;
 			
 			-- Register the address for reading
-			addr_reg <= addr;
+			addr_reg <= address;
 		end if;
 	
 	end process;
