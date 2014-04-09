@@ -5,11 +5,11 @@ use ieee.numeric_std.all;
 entity vrom is
 	port 
 	(
-		addr_a	: in natural range 0 to 255;
-		addr_b	: in natural range 0 to 255;
-		clk		: in std_logic;
-		q_a		: out std_logic_vector(7 downto 0);
-		q_b		: out std_logic_vector(7 downto 0)
+		address_a		: in natural range 0 to 8191;
+		address_b		: in natural range 0 to 8191;
+		clock		: IN STD_LOGIC ;
+		q_a		: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
+		q_b		: OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
 	);
 end entity;
 
@@ -17,13 +17,13 @@ architecture rtl of vrom is
 
 	-- Build a 2-D array type for the ROM
 	subtype word_t is std_logic_vector(7 downto 0);
-	type memory_t is array(255 downto 0) of word_t;
+	type memory_t is array(8191 downto 0) of word_t;
 		
 	function init_rom
 	return memory_t is
 	variable tmp : memory_t := (others => (others => '0'));
 	begin 
-		for addr_pos in 0 to 255 loop 
+		for addr_pos in 0 to 8191 loop 
 			-- Initialize each address with the address itself
 			tmp(addr_pos) := std_logic_vector(to_unsigned(addr_pos, 8));
 		end loop;
@@ -38,11 +38,11 @@ architecture rtl of vrom is
 	
 	begin
 	
-	process(clk)
+	process(clock)
 	begin
-		if(rising_edge(clk)) then
-			q_a <= rom(addr_a);
-			q_b <= rom(addr_b);
+		if(rising_edge(clock)) then
+			q_a <= rom(address_a);
+			q_b <= rom(address_b);
 		end if;
 	end process;
 

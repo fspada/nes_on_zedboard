@@ -4,15 +4,6 @@ use ieee.std_logic_1164.all;
 entity sram is
 	port 
 	(	
-		-- data_a	: in std_logic_vector(7 downto 0);
-		-- data_b	: in std_logic_vector(7 downto 0);
-		-- addr_a	: in natural range 0 to 63;
-		-- addr_b	: in natural range 0 to 63;
-		-- we_a	: in std_logic := '1';
-		-- we_b	: in std_logic := '1';
-		-- clk		: in std_logic;
-		-- q_a		: out std_logic_vector(7 downto 0);
-		-- q_b		: out std_logic_vector(7 downto 0)
 		address_a		: in natural range 0 to 2047;
 		address_b		: in natural range 0 to 2047;
 		clock		: IN STD_LOGIC ;
